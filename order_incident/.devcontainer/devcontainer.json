@@ -1,0 +1,1 @@
+{"name":"order_incident Dart","image":"mcr.microsoft.com/devcontainers/base:ubuntu","postCreateCommand":"bash scripts/setup_dart.sh","customizations":{"vscode":{"extensions":["Dart-Code.dart-code"]}}}
