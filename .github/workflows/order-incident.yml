@@ -1,0 +1,25 @@
+name: Dart order_incident checks
+on:
+  push:
+    paths:
+      - 'order_incident/**'
+      - '.github/workflows/order-incident.yml'
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: order_incident
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dart-lang/setup-dart@v1
+      - run: dart pub get
+      - run: dart analyze
+      - run: dart test
+      - run: dart run bin/main.dart | tee scenario.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: order-incident-scenario
+          path: order_incident/scenario.txt
